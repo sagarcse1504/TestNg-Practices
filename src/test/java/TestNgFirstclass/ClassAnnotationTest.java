@@ -1,32 +1,30 @@
 package TestNgFirstclass;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
+public class ClassAnnotationTest extends BaseClassTest{
 
-public class MethodAnnotationTest extends BaseMethodTest{
-
-    @Test
+    @Test(priority = 1)
 
     public void CheckTittle() {
+
         Assert.assertEquals(driver.getTitle(), "Swag Labs");
     }
-    @Test
+    @Test(priority = 2)
     public void CheckUrl() {
+
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/");
     }
-    @Test
+    @Test(priority = 3)
     public void LoginFail() {
         driver.findElement(By.id("user-name")).sendKeys("adasfds");
         driver.findElement(By.id("login-button")).click();
         int count = driver.findElements(By.className("error-message-container")).size();
         Assert.assertEquals(count, 1);
     }
-    @Test
+    @Test(priority = 4)
     public void LoginPass() {
         driver.navigate().refresh();
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
